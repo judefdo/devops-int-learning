@@ -1,0 +1,12 @@
+User Space: Is the memory allocation where all user application runs. It will be swaped 
+            when needed
+
+Internal storage: /etc/fstab: <filesystem> <mount point> <type> <options> <dump> <pass>
+
+load average: 
+
+     It is displayed in uptime or /proc/loadavg . It says the load average in 1, 5 and 15 mintues
+
+list cpus: nproc or lscpu
+
+     
