@@ -6,8 +6,7 @@ print ("The original list is : " + str(test_list))
 # using sort() + lambda 
 # to sort list of list  
 # sort by second index 
-#test_list.sort(key = lambda test_list: te
-# st_list[1]) 
+#test_list.sort(key = lambda test_list: test_list[1]) 
 print(str(key=lambda test_list: test_list[1]))  
 # printing result 
 print ("List after sorting by 2nd element of lists : " + str(test_list)) 
