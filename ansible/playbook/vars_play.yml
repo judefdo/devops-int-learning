@@ -1,0 +1,21 @@
+# play file with variable substitution
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Create working directory
+      file:
+        name: "{{ working_dir }}"
+        state: directory
+    - name: create new file service text
+      lineinfile:
+        path: "{{ working_dir }}/services.txt"
+        line: "{{ services_list }}"
+        create: yes
+    - name: setup a new variable inside playbook
+      command: ls -alt "{{ share_paths['nfs'] }}"
+      register: cmd_jude_output
+    - name: write output to a file
+      copy:
+        content: "{{ cmd_jude_output }}"
+        dest: "{{ working_dir }}/command.out"

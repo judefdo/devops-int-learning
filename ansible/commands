@@ -11,6 +11,7 @@ ansible install application
    state=absent == remove the elink applition
   -f == fork or parallel running
 
+ssh-copy-id ansible@localhost -- ansible uses ssh to execute its tasks
 
 docs.ansible.com -- for documentation for all modules
 
