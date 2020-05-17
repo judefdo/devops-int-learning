@@ -1,0 +1,12 @@
+--- # play example
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: install elinks
+      apt:
+        name: elinks
+        state: latest
+    - name: install ncat
+      apt:
+        name: nmap-ncat
+        state: latest

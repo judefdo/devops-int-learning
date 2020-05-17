@@ -4,9 +4,6 @@ ansible modules:
   - ping
   - setup -- returns bunch of details about the host
 
-
-
-
 ansible install application
   ansible -i <hostfile> -b -m apt -a "elinks state=installed" -f 3
    -b ==  it becomes superuser
@@ -59,4 +56,12 @@ dynamic inventory -- using a program to get the list of instnace using python or
 yaml variable "{{ variable_name }}"  
 
 boolean in yaml "yes or no", 
+
+ansible-playbook -i inv ==
+    sequence of steps;
+        1. connectivity hosts
+        2. gather facts
+        3. Execute tasks
+        4. generate report
+ansible-playbook -i inv -C == check or dry run
 
