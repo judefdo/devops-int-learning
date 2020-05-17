@@ -1,0 +1,62 @@
+#
+
+ansible modules:
+  - ping
+  - setup -- returns bunch of details about the host
+
+
+
+
+ansible install application
+  ansible -i <hostfile> -b -m apt -a "elinks state=installed" -f 3
+   -b ==  it becomes superuser
+   state=installed == install the elinks application
+   state=absent == remove the elink applition
+  -f == fork or parallel running
+
+
+docs.ansible.com -- for documentation for all modules
+
+
+ansible -i <hostfile> -a "touch /tmp/jude" == this will execut the command module
+ansible -i <hostfile> -m shell -a "echo $PATH > /tmp/jude" == this should use shell module, since ansible don't know how to use the > 
+ansible -i <hostfile> -m shell -a "echo $PATH > /tmp/jude" == this should use shell module, since ansible don't know how to use the > 
+
+
+ansible -i <hostname> -m setup --tree sysinfo == this will create a directory and copy the json to the folder as well as display in stdout
+
+difference between file and copy module
+
+  copy has some advance feature or attribute like dest, content - create file based on a content passed, remote_src -- get src file from remote host:w
+  file module can create a new file like touch, and use lineinfile to insert line too
+
+lineinfile module == used to search or replace a line, add or before a regex etc on a particular file
+	-- lineinfile is replace or insert only once, since it maintain the state of the file and check if the new line exist on it or not
+
+
+replace == if we want to replace all token on a file, replace is the module to use, instead of lineinfile, since it will execute only once
+
+get_url == get files from http, https, ftp or x509 even using proxy 
+
+archieve and unarchieve modules are used for zip, tar and unzip, 
+
+user module == create and delete a user, make attention to append when create and remove when delete:
+group module == to create a group, delete group and add user to the group
+
+package == detect both yum or apt etc based on the OS of the node
+
+service == for service or daemon running on the linux OS, enable=yes, will enable during boot of the service, it is like chkconfig
+
+ansible -i <hostfile> -a "/home/judefdo/sleep.sh" -B 15 == where sleep.sh file has line sleep 10 on it, it will work as long as it returns
+                                                           with in the 15 sec, but will fail if we increase sleep 30, to disable error, we 
+					                   can use -P 0, no pooling 
+
+************************************************************************************************
+
+dynamic inventory -- using a program to get the list of instnace using python or bash,  accept two argument --list  and --host
+                     check google how to get dynamic inventory for ansible for various cloud provider
+
+yaml variable "{{ variable_name }}"  
+
+boolean in yaml "yes or no", 
+
