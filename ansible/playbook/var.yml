@@ -1,0 +1,14 @@
+# The below is variable with a value
+working_dir: /home/ansible/working
+
+# The below returns a list
+service_list:
+        - https
+        - nfs
+        - mongodb
+                
+ # The below returns a dictonary          
+mount_paths:
+        nfs: /mnt/nfs
+        cfs: /mnt/cifs
+        iscis: /mnt/iscis
