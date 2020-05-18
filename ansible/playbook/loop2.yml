@@ -1,0 +1,13 @@
+--- # loop example
+- hosts: localhost
+  become: yes
+  vars_files:
+    - var.yml
+  tasks:
+    - name: Loop example to install software
+      apt:
+        name: "{{ item }}"
+        state: absent
+      loop: "{{ service_list }}"
+# service_list is the group from the var.yml file      
+        

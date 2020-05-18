@@ -1,0 +1,13 @@
+# my first template file
+---
+- host: localhost
+  gather_facts: no
+  become: yes
+  vars:
+    remotehost: judefdo
+    version: 1.2
+  tasks:
+    - name: copy a file called config
+      template:
+        src: config.j2
+        dest: /opt/config

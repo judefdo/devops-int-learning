@@ -66,3 +66,45 @@ ansible-playbook -i inv ==
         4. generate report
 ansible-playbook -i inv -C == check or dry run
 
+ansible uses [] as groups in the inventory file, to group or substitue the 
+groups for the same inventory, it should have the same file name
+example: << snipet from inv file >>
+[ubuntu]
+judefdo1 ansible_host=judefdo1.judefdo.com
+judefdo2 ansible_host=judefdo2.judefdo.com
+
+so to substitue all the variable on a play book, we should an file name ubuntu
+on the group_vars folder 
+ls -sl group_vars
+ubuntu
+
+ansible-playbook vars_play.yml -e @var.yml 
+
+ansible templates are files, which will be replaced on the remote host, example
+   tomcat web.xml, which will be replaced on the remote host with ssl and hostname on it
+
+ansible magic variables - hostvars, groups, group_name and investory_hostname
+
+conditional operation in ansible is "when"
+  operators are == , is , >= , <= 
+
+ansible use loop and the value will be return to the varible item
+
+handler: Like restart httpd after updateding httpd.conf file, it will run only once  
+         even it is called 10 times from the tasks. it is as per design
+
+ansible-vault  encrypt <filename> == this will prompt for a password
+we can decrypt file using 
+ansible-vault decrypt <filename>
+
+ansible-vault encrypt --vault-id <filename> 
+  It is the id which will be used by the playbook, something like databag
+
+ansible-playbook valut.yml --vault-id dev@prompt == this will ask for a password iwith prompt
+
+
+store the password in a file like echo test > passwd 
+ansible-playbook valut.yml --vault-id dev@passwd
+
+ansible-vault ecrypt_string --vault-id dev@prompt 'new_pass: great'
+ -- copy the value split out and paste in into the vars file
