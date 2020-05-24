@@ -1,0 +1,24 @@
+Q7. In Git how do you revert a commit that has already been pushed and made public?
+There can be two answers to this question so make sure that you include both because any of the below options can be used depending on the situation:
+
+Remove or fix the bad file in a new commit and push it to the remote repository. This is the most natural way to fix an error. Once you have made necessary changes to the file, commit it to the remote repository for that I will use
+git commit -m “commit message”
+Create a new commit that undoes all changes that were made in the bad commit.to do this I will use a command
+git revert <name of bad commit>
+
+Q8. How do you squash last N commits into a single commit?
+There are two options to squash last N commits into a single commit. Include both of the below mentioned options in your answer:
+
+If you want to write the new commit message from scratch use the following command
+git reset –soft HEAD~N &&
+git commit
+If you want to start editing the new commit message with a concatenation of the existing commit messages then you need to extract those messages and pass them to Git commit for that I will use
+git reset –soft HEAD~N &&
+git commit –edit -m”$(git log –format=%B –reverse .HEAD@{N})”
+
+
+09 git bisect -- to find the bad commit on the git history
+
+How do you find a list of files that has changed in a particular commit?
+* git diff-tree -r {hash}
+

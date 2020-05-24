@@ -1,0 +1,18 @@
+QoS - Quality of Service
+        1- Guartee --> when memory limit and request are same
+        2- Burstable --> when memory limit is more than the request 
+        3- Besteffort --> if you don't specify any limit on the pod definition
+
+Defaulf definition: 
+       you can specify a yml with limitRange like
+        apiVersion: v1
+        kind: LimitRange
+        metadata:
+            name: mem-limit-range
+        spec:
+            limits:
+            - default:
+                  memory: 512Mi
+            defaultRequest:
+                  memory: 256Mi
+            type: Container
