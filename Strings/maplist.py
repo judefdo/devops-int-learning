@@ -7,3 +7,5 @@ A5 = {i:i*i for i in A1}
 A6 = [[i,i*i] for i in A1]
 print(A0,A1,A2,A3,A4,A5,A6)
 print(A3)
+
+print(type(A6))
