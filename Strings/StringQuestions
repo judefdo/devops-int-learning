@@ -4,15 +4,17 @@
 4) How do you find all the permutations of a string? (solution)
 5) How do you count the occurrence of a given character in a string? (solution)
 6) How do you check if a string contains only digits? (solution)
+7) How do you check if two strings are a rotation of each other?
+8) How do you print the first non-repeated character from a string?
+9) How do you count a number of vowels and consonants in a given string?
 
 How can a given string be reversed using recursion? (solution)
 
-How do you count a number of vowels and consonants in a given string? (solution)
+ (solution)
 
-How do you print the first non-repeated character from a string? (solution)
+ (solution)
 How do you convert a given String into int like the atoi()? (solution)
 How do you reverse words in a given sentence without using any library method? (solution)
-How do you check if two strings are a rotation of each other? (solution)
 How do you check if a given string is a palindrome? (solution)
 How do you find the length of the longest substring without repeating characters? (solution)
 Given string str, How do you find the longest palindromic substring in str? (solution)
