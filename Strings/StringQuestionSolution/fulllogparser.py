@@ -1,3 +1,4 @@
+# Example form https://www.learnsteps.com/log-parsing-in-python-read-how-you-can-do-it/
 parsed_data = []
   
 with open("example.logs","r") as file:
