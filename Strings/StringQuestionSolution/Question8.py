@@ -8,3 +8,7 @@ for k,v in res.items():
 temp=string1
 res1 = next(filter(lambda x: (temp.count(x) == 1)   , string1 ))
 print(str(res1))
+
+# Remove dupliate character from a string
+res1 = set(map(lambda x:x,string1))
+print(str(res1))

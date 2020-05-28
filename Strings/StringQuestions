@@ -7,8 +7,9 @@
 7) How do you check if two strings are a rotation of each other?
 8) How do you print the first non-repeated character from a string?
 9) How do you count a number of vowels and consonants in a given string?
-
+10) re.split()
 How can a given string be reversed using recursion? (solution)
+
 
  (solution)
 
