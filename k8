@@ -17,6 +17,12 @@ Defaulf definition:
                   memory: 256Mi
             type: Container
 
+Initial namespace
+  - default
+  - kube-system
+  - kube-public
+
+
 A Daemon set is a set of pods that runs only once on a host. 
 They are used for host layer attributes like a network or for monitoring a network,
  which you may not need to run on a host more than once.
@@ -36,4 +42,73 @@ and allows nodes in Kubernetes clusters to read and write data. Although etcd wa
 it also works on a variety of operating systems (e.g., Linux, BSB, and OS X) because it is open-source. 
 Etcd represents the state of a cluster at a specific moment in time and is a canonical hub for state management and 
 cluster coordination of a Kubernetes cluster.
- 
+
+
+Kubernetes service without selector, will not create a endpoint. you need to create a end point manually. 
+
+Kubernetes has 3 type of kube-proxy :
+  user-space proxy mode:
+      It uses proxy-port and uses kube-proxy the SessionAffinity for the service
+      Lastly, the user-space proxy installs iptables rules which capture traffic to the Service’s clusterIP (which is virtual) and port. 
+      The rules redirect that traffic to the proxy port which proxies the backend Pod. It uses round robin method
+
+  iptable proxy mode:
+      Service, it installs iptables rules, which capture traffic to the Service’s clusterIP and port, and 
+      redirect that traffic to one of the Service’s backend sets. For each Endpoint object, it installs iptables rules which select a backend Pod.
+      It uses linux kernel for processing , kube-proxy in iptables mode chooses a backend at random. It uses readyness probe to 
+
+ IPVS mode: it uses call netlink interface , it uses kernel mode, IPVS mode has higher through put of network traffic
+
+
+ Discovering services:
+   through environement variables and DNS
+
+ Headless Services:
+     There is no Cluster IP created or kube-proxy doesn't handle these services, and there is no load balancing and proxying done 
+     by platform.
+   
+An ExternalName Service is a special case of Service that does not have selectors and uses DNS names instead.
+ExternalName: Maps the Service to the contents of the externalName field (e.g. foo.bar.example.com), by returning a CNAME record
+
+
+kube-proxy : ??
+
+
+Kubernetes operators -- 
+
+
+How to add entry to pod /etc/resolv.conf 
+Using the pod definition script:
+   apiVersion: v1
+kind: Pod
+metadata:
+  namespace: default
+  name: dns-example
+spec:
+  containers:
+    - name: test
+      image: nginx
+  dnsPolicy: "None"
+  dnsConfig:
+    nameservers:
+      - 1.2.3.4
+    searches:
+      - ns1.svc.cluster-domain.example
+      - my.dns.search.suffix
+    options:
+      - name: ndots
+        value: "2"
+      - name: edns0
+
+The above pod definition will create an entry in /etc/resolv.conf
+
+nameserver 1.2.3.4
+search ns1.svc.cluster-domain.example my.dns.search.suffix
+options ndots:2 edns0
+
+
+A headless service is used to interface with service discovery mechanisms without being tied to a ClusterIP, therefore allowing you to directly reach pods without having to access them through a proxy. It is useful when neither load balancing nor a single Service IP is required. 
+
+
+
+Jasonnet
