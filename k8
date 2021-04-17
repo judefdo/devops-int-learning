@@ -1,3 +1,11 @@
+***** IMPORTANt
+https://www.replex.io/blog/kubernetes-in-production-best-practices-for-cluster-autoscaler-hpa-and-vpa
+https://aws.amazon.com/blogs/containers/amazon-eks-cluster-multi-zone-auto-scaling-groups/
+https://opsani.com/blog/kubernetes-cluster-autoscaling-overview/
+https://aws.amazon.com/blogs/compute/run-your-kubernetes-workloads-on-amazon-ec2-spot-instances-with-amazon-eks/
+https://rancher.com/docs/rancher/v2.x/en/cluster-admin/cluster-autoscaler/amazon/
+
+
 QoS - Quality of Service
         1- Guartee --> when memory limit and request are same
         2- Burstable --> when memory limit is more than the request 
