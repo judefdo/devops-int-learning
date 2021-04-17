@@ -1,0 +1,40 @@
+Terraform resource life cycle
+
+ 1) write main.tf
+ 2) Validate
+ 3) difference -- if error mark as tainted, and delte the plan
+ 4) plan
+ 5) apply 
+
+
+ If a resource is already created, if you run the script , terraform will fail, so we 
+ have to use terraform import to suppress any error message and update the state
+
+
+ The terraform import will not update this in remote state file. We can have to manually
+ copy the state block from local to remote s3 bucket.
+
+ provider alias: It is an tag for naming convention
+
+ provider version is 13.X
+
+ In a provider , there is small version : > than version sign to get version
+
+
+ What are the ways we can use terraform providers:
+
+ * ) Enter the credentials in plain text on the provider block
+ * ) From enviornment varilable
+ * ) Ask AWS to promt
+ * ) Attach a role into ec2 machine
+
+
+ provisioner:
+
+   file provisioner: to copy a file local to remote 
+   remote-exec : like user-date, but it will be execute on the remote host
+   local-exec : it is run from the desktop or local system, to get newly created instance id, ip address etc
+
+   
+
+

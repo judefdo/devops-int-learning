@@ -1,0 +1,38 @@
+AWS - Interview question:
+
+1) 5 aws s3 cli commands
+   * aws s3 mb
+   * aws s3 rm
+   * aws s3 ls
+   * aws s3 mv
+   * aws s3 cp
+
+2) ALB - Layer 7 
+   NLB - Layer 4
+   CLB - legacy 
+
+   Layer 7 load balancing allows the load balancer to route a request based on information in the request itself, such as what kind of content is being requested. 
+   4 load-balancer takes routing decision based on IPs and TCP or UDP ports. It has a packet view of the traffic exchanged between the client and a server which means it takes decisions packet by packet. The layer 4 connection is established between the client and the server
+
+3) Type of ec2 instnace
+     r- memory opt
+     c-compute
+     m-medium
+     i-storage opt (Dataware house)
+     g- gpu opt
+     T- Burstable ( idle for general purpose)
+
+4) Some cloudformation function
+      Fn::Join
+      Fn::select
+      ref
+      Fn::FindInMap
+      Fn::Base64  
+
+5) SQS == RabbitMq
+
+6) Stateless and stateful systems
+
+7) lamdba is a stateless system
+8) AMI are available as per region
+

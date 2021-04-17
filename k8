@@ -21,7 +21,7 @@ Initial namespace
   - default
   - kube-system
   - kube-public
-
+              
 
 A Daemon set is a set of pods that runs only once on a host. 
 They are used for host layer attributes like a network or for monitoring a network,
@@ -107,8 +107,63 @@ search ns1.svc.cluster-domain.example my.dns.search.suffix
 options ndots:2 edns0
 
 
-A headless service is used to interface with service discovery mechanisms without being tied to a ClusterIP, therefore allowing you to directly reach pods without having to access them through a proxy. It is useful when neither load balancing nor a single Service IP is required. 
+The kubelet is a service agent that controls and maintains a set of pods by watching for pod specs through the Kubernetes API server.
+ It preserves the pod lifecycle by ensuring that a given set of containers are all running as they should. 
+ The kubelet runs on each node and enables the communication between the master and slave nodes.
+
+Control Plan Components
+Kube-apiserver. This component is the control plane’s front end.
+Etcd. This component is a highly available and consistent key-value store. Etcd acts as the backing store for all Kubernetes cluster data.
+Kube-scheduler. This component watches out for newly created pods that lack assigned nodes and chooses nodes for them to run on.
+Kube-controller-manager. This component runs the controller process, including node controllers, endpoints controllers, replication controllers, service accounts, and token controllers.
+Cloud-controller-manager. The manager links your cluster into your cloud provider's API. It separates the components that interact with the chosen cloud platform from the components that only interact with your cluster.
 
 
+Node Components
+Node components, unsurprisingly, run on each node, where they maintain running pods and provide the Kubernetes runtime environment.
 
+Kubelet. This agent ensures that containers are running in a pod.
+Kube-proxy. This proxy maintains network rules on nodes. These rules allow network communication from sessions inside or outside of your cluster to your pods.
+Container runtime. This software runs containers. Kubernetes supports various container runtimes like Containerd, CRI-O, Docker, or any Kubernetes Container Runtime Interface (CRI) implementation.
+
+
+Cluster DNS. Cluster DNS serves DNS records for Kubernetes services. Although addons aren’t strictly mandatory, Kubernetes clusters should have a DNS because many examples depend on it.
+Web UI. The Web UI is a general-purpose dashboard for Kubernetes clusters. It lets users manage and troubleshoot the cluster plus any applications running in it.
+Container Resource Monitoring. This addon records generic time-series metrics regarding the central database’s containers and provides a UI for browsing the data.
+Cluster-Level Logging. This mechanism saves container logs to a central log store with a searching and browsing interface.
 Jasonnet
+
+How to secure Kubernetes services?
+* Ensure all traffic is TLS
+* use api authentication
+* make kubeless protect its api via authorizaiton-mode=Webhook
+* monitor RBAC failure
+* remove default sevice accounts
+* filter engress to cloud api 
+
+
+kubeclt drain to --> to remove all pods from the node
+kubectl uncordon --> to allow pods back to drained system
+
+Kubernetes services
+Cluster IP Service -- Internal or inside the clusters
+Node service -- expose a node on the server
+Load Balancer -- Expose the cloud based providers using the LB
+External Name -- It is setup by the cname
+
+Difference between replication controllers and replic sets
+replication controller is obsolete. the only difference is replication controller don't have selector
+
+Init container vs side car container
+  *   Init containers run and exit before your main application starts
+  *    Sidecars run side-by-side with your main container(s) and provide some kind of service for them.
+
+The difference between statefulset vs deployments
+
+* A StatefulSet is another Kubernetes controller that manages pods just like Deployments. But it differs from a Deployment in that it is more suited for stateful apps.
+* A stateful application requires pods with a unique identity (for example, hostname). One pod should be able to reach other pods with well-defined names.
+* For a StatefulSet to work, it needs a Headless Service. A Headless Service does not have an IP address. Internally, it creates the necessary endpoints to expose pods with DNS names. The StatefulSet definition includes a reference to the Headless Service, but you have to create it separately.
+* By nature, a StatefulSet needs persistent storage so that the hosted application saves its state and data across restarts. Kubernetes provides Storage Classes, Persistent Volumes, and Persistent Volume Claims to provide an abstraction layer above the cloud provider’s storage-offering mechanism.
+Once the StatefulSet and the Headless Service are created, a pod can access another one by name prefixed with the service name.
+
+
